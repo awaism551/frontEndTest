@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
         <div class="row">
           <div class="col-md-12">
             
@@ -29,4 +29,49 @@
             
           </div>
         </div>
-      </div>
+      </div> -->
+      <div class="main-page pt-4">
+        <div class="container" ng-controller="WizardController as vm">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-md-12">
+                    <div class="card book-card p-3">
+                      <div class="book-card-heading">
+                          <h6>Add book - New book</h6>
+                        <ul class="steps d-flex my-4">
+                            <li ng-class="{'active': vm.currentStep === 1}">
+                                <a href="#">
+                                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle step-no-round">1</span>
+                                    <p class="pt-1">Genre</p>
+                                </a>
+                            </li>
+                            <li ng-class="{'active': vm.currentStep === 2}">
+                                <a href="#">
+                                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle step-no-round">2</span>
+                                    <p class="pt-1">Subgenre</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle step-no-round">...</span>
+                                    <p class="pt-1"></p>
+                                </a>
+                            </li>
+                        </ul>
+                      </div>
+                      <div class="book-card-body">
+                        <ng-include src="vm.getStepTemplate()"></ng-include>                          
+                      </div>
+                      <div class="book-card-footer">
+                          <div class="row subactions-btns action-btns mt-4">
+                            <div class="col-md-12 text-right">
+                                <button ng-disabled="vm.currentStep <= 1" ng-click="vm.gotoStep(1)" type="button" class="btn btn-outline-secondary"><i class="fa fa-angle-left mr-2" aria-hidden="true"></i>Go to Start</button>
+                                <button ng-disabled="vm.currentStep >= vm.steps.length || (vm.currentStep === 1 && !vm.currentGenre.selectedGenre) || (vm.currentStep === 2 && !vm.currentGenre.currentSubgenre) || (vm.currentStep === 3 && !vm.currentGenre.currentSubgenre.name)" type="button" class="btn btn-outline-secondary ml-2" ng-click="vm.gotoStep(vm.currentStep + 1)">Next</button>
+                                <button ng-disabled="vm.currentStep != vm.steps.length || (vm.currentStep === 4 && vm.currentGenre.currentSubgenre.isDescriptionRequired && !vm.currentGenre.currentSubgenre.desc)" type="button" class="btn btn-outline-secondary ml-2" ng-click="vm.save()">Save</button>                            
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

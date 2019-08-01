@@ -1,4 +1,8 @@
-<div class="form-group">
-    <button ng-repeat="subgenre in vm.currentGenre.currentSubgenres" class="btn btn-default" type="button" ng-click="vm.selectSubgenre(subgenre)">{{subgenre.name}}</button>
-    <button class="btn btn-default" type="button" ng-click="vm.selectSubgenre({})">Add New</button>
+<div class="row subactions-btns">
+    <div class="col-md-3" ng-repeat="subgenre in vm.currentGenre.currentSubgenres">
+        <button type="button" class="btn btn-outline-secondary w-100 mb-3 py-2" ng-click="vm.selectSubgenre(subgenre)">{{subgenre.name}}</button>
+    </div>
+    <div class="col-md-3">
+          <button type="button" class="btn btn-outline-secondary w-100 mb-3 py-2" ng-click="vm.selectSubgenre({})">Add New</button>
+    </div>
 </div>

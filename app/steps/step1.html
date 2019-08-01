@@ -1,3 +1,5 @@
-<div class="form-group">
-    <button ng-repeat="genre in vm.genreData.genres" class="btn btn-default" type="button" ng-click="vm.selectGenre(genre)">{{genre.name}}</button>
+<div class="row subactions-btns">
+    <div class="col-md-3" ng-repeat="genre in vm.genreData.genres">
+        <button type="button" class="btn btn-outline-secondary w-100 mb-3 py-2" ng-click="vm.selectGenre(genre)">{{genre.name}}</button>
+    </div>
 </div>
