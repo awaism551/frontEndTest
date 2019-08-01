@@ -55,6 +55,9 @@
             if (newStep === 3 && !angular.equals(vm.currentGenre.currentSubgenre, {})) {
                 newStep++;
             }
+            if (newStep === 1) {
+                vm.currentGenre = {};
+            }
             vm.currentStep = newStep;
         }
         
