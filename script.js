@@ -1,11 +1,11 @@
 (function () {
 
     var app = angular.module('app', []);
-    app.controller("WizardController", ["genreService", wizardController]);
+    app.controller("WizardController", ["genreService","$scope", wizardController]);
 
     app.service("genreService", [genreService]);
 
-    function wizardController(genreService) {
+    function wizardController(genreService, $scope) {
 
         // console.log(genreService);
         var vm = this;
@@ -37,7 +37,7 @@
         ];
         vm.currentGenre = {};
         // vm.newSubgenre = {};
-        vm.totalSubgenres = ++genreService.getLastSubgenreId();
+        vm.totalSubgenres = genreService.getLastSubgenreId() + 1;
 
         vm.selectGenre = function(genre) {
             vm.currentGenre.selectedGenre = genre.id;
@@ -70,9 +70,11 @@
             genreService.updateGenres(vm.currentGenre, vm.currentGenre.selectedGenre).then(function (msg) {
                 alert(msg);
                 vm.gotoStep(1);
+                $scope.$apply();
             }).catch(function(err) {
                 alert(err);
                 vm.gotoStep(1);
+                $scope.$apply();
             });
         }
     }
