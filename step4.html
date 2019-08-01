@@ -3,8 +3,14 @@
     <input type="text" class="form-control" name="title" ng-model="vm.currentGenre.currentSubgenre.title"  />
     <label>Author</label>
     <input type="text" class="form-control" name="author" ng-model="vm.currentGenre.currentSubgenre.author"  />
-    <textarea ng-model="vm.currentGenre.currentSubgenre.desc" ng-required="vm.currentGenre.currentSubgenre.isDescriptionRequired">
+    
+    <label for="desc">{{vm.currentGenre.currentSubgenre.isDescriptionRequired}}</label>
+    <textarea ng-model="vm.currentGenre.currentSubgenre.desc" ng-required="vm.currentGenre.currentSubgenre.isDescriptionRequired" id="desc">
     </textarea>
+
+    <!-- <label for="comment">Comment:</label>
+    <textarea class="form-control" rows="5" id="comment"></textarea> -->
+
     <!-- <label>ISBN</label>
     <input type="text" class="form-control" name="title" ng-model="vm.title"  />
     <label>Publisher</label>

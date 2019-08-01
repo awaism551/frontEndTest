@@ -19,7 +19,7 @@
             
             <div id="wizard-step-container">
               <ul class="nav nav-pills nav-justified">
-                <li ng-repeat="step in vm.steps" ng-class="{'active':step.step == vm.currentStep}"><a ng-click="vm.gotoStep(step.step)" href="">{{step.step}}. {{step.name}}</a></li>
+                <li ng-repeat="step in vm.steps" ng-class="{'active':step.step == vm.currentStep}"><a href="">{{step.step}}. {{step.name}}</a></li>
               </ul>
             </div>
 
@@ -31,9 +31,9 @@
               <div class="pull-right">
                 <span class="btn-group">
                   <button ng-disabled="vm.currentStep <= 1" class="btn btn-default" name="previous" type="button" ng-click="vm.gotoStep(vm.currentStep - 1)"><i class="fa fa-arrow-left"></i> Previous step</button>
-                  <button ng-disabled="vm.currentStep >= vm.steps.length" class="btn btn-primary" name="next" type="button" ng-click="vm.gotoStep(vm.currentStep + 1)">Next step <i class="fa fa-arrow-right"></i></button>
+                  <button ng-disabled="vm.currentStep >= vm.steps.length || (vm.currentStep === 1 && !vm.currentGenre.selectedGenre) || (vm.currentStep === 2 && !vm.currentGenre.currentSubgenre) || (vm.currentStep === 3 && !vm.currentGenre.currentSubgenre.name)" class="btn btn-primary" name="next" type="button" ng-click="vm.gotoStep(vm.currentStep + 1)">Next step <i class="fa fa-arrow-right"></i></button>
                 </span>
-                <button ng-disabled="vm.currentStep != vm.steps.length" class="btn btn-success" name="next" type="button" ng-click="vm.save()"> <i class="fa fa-floppy-o"></i> Save</button>
+                <button ng-disabled="vm.currentStep != vm.steps.length || (vm.currentStep === 4 && vm.currentGenre.currentSubgenre.isDescriptionRequired && !vm.currentGenre.currentSubgenre.desc)" class="btn btn-success" name="next" type="button" ng-click="vm.save()"> <i class="fa fa-floppy-o"></i> Save</button>
               </div>
             </div>
 
