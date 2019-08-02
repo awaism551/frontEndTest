@@ -1,118 +1,17 @@
 'use strict';
 
 angular.module('myApp.books')
-.service("genreService", [genreService]);
+.service("genreService", ["$http", genreService]);
 
-function genreService() {
-    this.genreData = {
-        "genres": [
-          {
-            "id": 1,
-            "name": "Genre 1",
-            "subgenres": [
-              {
-                "id": 10,
-                "name": "Subgenre 1",
-                "isDescriptionRequired": true
-              },
-              {
-                "id": 11,
-                "name": "Subgenre 2",
-                "isDescriptionRequired": false
-              },
-              {
-                "id": 12,
-                "name": "Subgenre 3",
-                "isDescriptionRequired": true
-              },
-              {
-                "id": 13,
-                "name": "Subgenre 4",
-                "isDescriptionRequired": true
-              },
-              {
-                "id": 14,
-                "name": "Subgenre 5",
-                "isDescriptionRequired": true
-              }
-            ]
-          },
-          {
-            "id": 2,
-            "name": "Genre 2",
-            "subgenres": [
-              {
-                "id": 15,
-                "name": "Subgenre 1",
-                "isDescriptionRequired": true
-              },
-              {
-                "id": 16,
-                "name": "Subgenre 2",
-                "isDescriptionRequired": false
-              },
-              {
-                "id": 17,
-                "name": "Subgenre 3",
-                "isDescriptionRequired": true
-              }
-            ]
-          },
-          {
-            "id": 3,
-            "name": "Genre 3",
-            "subgenres": [
-              {
-                "id": 18,
-                "name": "Subgenre 1",
-                "isDescriptionRequired": true
-              },
-              {
-                "id": 19,
-                "name": "Subgenre 2",
-                "isDescriptionRequired": true
-              },
-              {
-                "id": 20,
-                "name": "Subgenre 3",
-                "isDescriptionRequired": true
-              }
-            ]
-          },
-          {
-            "id": 4,
-            "name": "Genre 4",
-            "subgenres": [
-              {
-                "id": 21,
-                "name": "Subgenre 1",
-                "isDescriptionRequired": false
-              },
-              {
-                "id": 22,
-                "name": "Subgenre 2",
-                "isDescriptionRequired": false
-              },
-              {
-                "id": 23,
-                "name": "Subgenre 3",
-                "isDescriptionRequired": false
-              }
-            ]
-          },
-          {
-            "id": 5,
-            "name": "Genre 5",
-            "subgenres": [
-              {
-                "id": 24,
-                "name": "Subgenre 1",
-                "isDescriptionRequired": true
-              }
-            ]
-          }
-        ]
-    };
+function genreService($http) {
+   
+    var vm = this;
+
+    this.getDataFromFile = function () {
+        return Promise.resolve($http.get('data/genre.json').then(function(response) {
+            vm.genreData = response.data;
+        }));
+    }
 
     this.updateGenres = function (genre, id) {
         for (var i = 0; i < this.genreData.genres.length; i++) {
@@ -137,11 +36,21 @@ function genreService() {
     }
 
     this.getLastSubgenreId = function() {
-        return this.genreData.genres[this.genreData.genres.length - 1].subgenres[this.genreData.genres[this.genreData.genres.length - 1].subgenres.length-1].id;
+        // return Promise.resolve($http.get('data/genre.json').then(function(response) {
+        //     vm.genreData = response.data;
+        //     return vm.genreData.genres[vm.genreData.genres.length - 1].subgenres[vm.genreData.genres[vm.genreData.genres.length - 1].subgenres.length-1].id;
+        //     // return Promise.resolve(vm.genreData.genres[vm.genreData.genres.length - 1].subgenres[vm.genreData.genres[vm.genreData.genres.length - 1].subgenres.length-1].id);
+        // }));
+        return vm.genreData.genres[vm.genreData.genres.length - 1].subgenres[vm.genreData.genres[vm.genreData.genres.length - 1].subgenres.length-1].id;
     }
 
     this.getGenreData = function() {
-        return this.genreData;
+        return vm.genreData;
+        // return Promise.resolve(vm.genreData);
+        // return Promise.resolve($http.get('data/genre.json').then(function(response) {
+        //     vm.genreData = response.data;
+        //     return vm.genreData;
+        // }));
     }
     
 }
