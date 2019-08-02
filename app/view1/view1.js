@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
+angular.module('myApp.books', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view1', {
+  $routeProvider.when('/books', {
     templateUrl: 'view1/view1.html',
     controller: 'WizardController as vm'
   }).when('/success', {
