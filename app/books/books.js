@@ -4,7 +4,7 @@ angular.module('myApp.books', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/books', {
-    templateUrl: 'view1/view1.html',
+    templateUrl: 'books/books.html',
     controller: 'WizardController as vm'
   }).when('/success', {
     templateUrl: 'success/success.html',
