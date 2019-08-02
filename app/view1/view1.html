@@ -1,42 +1,10 @@
-<!-- <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            
-            <h1>Add book-New book</h1>
-            <div id="wizard-container" ng-controller="WizardController as vm">
-              
-              <div id="wizard-step-container">
-                <ul class="nav nav-pills nav-justified">
-                  <li ng-repeat="step in vm.steps" ng-class="{'active':step.step == vm.currentStep}"><a href="">{{step.step}}. {{step.name}}</a></li>
-                </ul>
-              </div>
-  
-              <div id="wizard-content-container">
-                <ng-include src="vm.getStepTemplate()"></ng-include>
-              </div>
-              
-              <div id="wizard-navigation-container">
-                <div class="pull-right">
-                  <span class="btn-group">
-                    <button ng-disabled="vm.currentStep <= 1" class="btn btn-default" name="previous" type="button" ng-click="vm.gotoStep(1)"><i class="fa fa-arrow-left"></i> Go to Start</button>
-                    <button ng-disabled="vm.currentStep >= vm.steps.length || (vm.currentStep === 1 && !vm.currentGenre.selectedGenre) || (vm.currentStep === 2 && !vm.currentGenre.currentSubgenre) || (vm.currentStep === 3 && !vm.currentGenre.currentSubgenre.name)" class="btn btn-primary" name="next" type="button" ng-click="vm.gotoStep(vm.currentStep + 1)">Next step <i class="fa fa-arrow-right"></i></button>
-                  </span>
-                  <button ng-disabled="vm.currentStep != vm.steps.length || (vm.currentStep === 4 && vm.currentGenre.currentSubgenre.isDescriptionRequired && !vm.currentGenre.currentSubgenre.desc)" class="btn btn-success" name="next" type="button" ng-click="vm.save()"> <i class="fa fa-floppy-o"></i> Save</button>
-                </div>
-              </div>
-  
-            </div>
-            
-          </div>
-        </div>
-      </div> -->
       <div class="main-page pt-4">
         <div class="container" ng-controller="WizardController as vm">
             <div class="row justify-content-center">
                 <div class="col-lg-7 col-md-12">
                     <div class="card book-card p-3">
                       <div class="book-card-heading">
-                          <h6>Add book - New book</h6>
+                        <h6>Add book - New book</h6>
                         <ul class="steps d-flex my-4">
                             <li ng-class="{'active': vm.currentStep === 1}">
                                 <a href="#">
@@ -50,10 +18,22 @@
                                     <p class="pt-1">Subgenre</p>
                                 </a>
                             </li>
-                            <li>
+                            <li ng-if="vm.currentStep === 1 || vm.currentStep === 2">
                                 <a href="#">
                                     <span class="d-inline-flex align-items-center justify-content-center rounded-circle step-no-round">...</span>
                                     <p class="pt-1"></p>
+                                </a>
+                            </li>
+                            <li ng-if="vm.currentStep === 3 || vm.currentStep === 4" ng-class="{'active': vm.currentStep === 3}">
+                                <a href="#">
+                                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle step-no-round">3</span>
+                                    <p class="pt-1">Add new subgenre</p>
+                                </a>
+                            </li>
+                            <li ng-if="vm.currentStep === 3 || vm.currentStep === 4" ng-class="{'active': vm.currentStep === 4}">
+                                <a href="#">
+                                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle step-no-round">4</span>
+                                    <p class="pt-1">Information</p>
                                 </a>
                             </li>
                         </ul>

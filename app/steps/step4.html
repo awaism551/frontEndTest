@@ -1,28 +1,88 @@
-<div class="form-group">
-    <label>Book Title</label>
-    <input type="text" class="form-control" name="title" ng-model="vm.currentGenre.currentSubgenre.title"  />
-    <label>Author</label>
-    <input type="text" class="form-control" name="author" ng-model="vm.currentGenre.currentSubgenre.author"  />
-    
-    <label for="desc">{{vm.currentGenre.currentSubgenre.isDescriptionRequired}}</label>
-    <textarea ng-model="vm.currentGenre.currentSubgenre.desc" ng-required="vm.currentGenre.currentSubgenre.isDescriptionRequired" id="desc">
-    </textarea>
-
-    <!-- <label for="comment">Comment:</label>
-    <textarea class="form-control" rows="5" id="comment"></textarea> -->
-
-    <!-- <label>ISBN</label>
-    <input type="text" class="form-control" name="title" ng-model="vm.title"  />
-    <label>Publisher</label>
-    <input type="text" class="form-control" name="title" ng-model="vm.title"  />
-    <label>Date Published</label>
-    <input type="date" class="form-control" name="title" ng-model="vm.title"  />
-    <label>No of Pages</label>
-    <input type="number" class="form-control" name="title" ng-model="vm.title"  />
-    <label>Format</label>
-    <input type="text" class="form-control" name="title" ng-model="vm.title"  />
-    <label>Edition</label>
-    <input type="text" class="form-control" name="title" ng-model="vm.title"  />
-    <label>Edition Language</label>
-    <input type="text" class="form-control" name="title" ng-model="vm.title"  /> -->
+<div class="book-card-body">
+    <div class="information-block">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Book title</label>
+                    <input ng-model="vm.currentGenre.currentSubgenre.title" type="text" class="form-control input-field" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Book title">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Author</label>
+                    <select class="form-control input-field" ng-model="vm.currentGenre.currentSubgenre.author">
+                        <option>Author 1</option>
+                        <option>Author 2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>ISBN</label>
+                    <input ng-model="vm.currentGenre.currentSubgenre.isbn" type="text" class="form-control input-field" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ISBN">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Publisher</label>
+                    <select ng-model="vm.currentGenre.currentSubgenre.publisher" class="form-control input-field">
+                        <option>Publisher</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label>Date published</label>
+                    <input ng-model="vm.currentGenre.currentSubgenre.datePublished" type="date" class="form-control input-field" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="DD/MM/YYYY">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Number of pages</label>
+                    <input ng-model="vm.currentGenre.currentSubgenre.noOfPages" type="number" class="form-control input-field" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Number of pages">
+                </div>	
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label>Format</label>
+                    <select ng-model="vm.currentGenre.currentSubgenre.format" class="form-control input-field">
+                        <option>Format</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label>Edition</label>
+                    <input ng-model="vm.currentGenre.currentSubgenre.edition" type="text" class="form-control input-field" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Edition">
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label>Edition language</label>
+                    <select ng-model="vm.currentGenre.currentSubgenre.editionLang" class="form-control input-field">
+                        <option>Edition language</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group des-textarea">
+                    <label>Description <span ng-if="vm.currentGenre.currentSubgenre.isDescriptionRequired" class="text-danger">*</span></label>
+                    <textarea ng-model="vm.currentGenre.currentSubgenre.desc" ng-required="vm.currentGenre.currentSubgenre.isDescriptionRequired" class="form-control input-field area-field" placeholder="Type the description..." id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <div class="des-action-btns">
+                        <button><i class="fa fa-text-width" aria-hidden="true"></i></button>
+                        <button><i class="fa fa-paperclip" aria-hidden="true"></i></button>
+                        <button><i class="fa fa-at" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

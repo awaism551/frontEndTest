@@ -6,14 +6,17 @@ angular.module('myApp.view1', ['ngRoute'])
   $routeProvider.when('/view1', {
     templateUrl: 'view1/view1.html',
     controller: 'WizardController as vm'
+  }).when('/success', {
+    templateUrl: 'success/success.html',
+    controller: 'SuccessController as vm'
   });
 }])
 
-.controller("WizardController", ["genreService","$scope", wizardController])
+.controller("WizardController", ["genreService", "$scope", "$location", wizardController])
 
 .service("genreService", [genreService]);
 
-    function wizardController(genreService, $scope) {
+    function wizardController(genreService, $scope, $location) {
 
         // console.log(genreService);
         var vm = this;
@@ -79,8 +82,9 @@ angular.module('myApp.view1', ['ngRoute'])
         
         vm.save = function() {
             genreService.updateGenres(vm.currentGenre, vm.currentGenre.selectedGenre).then(function (msg) {
-                alert(msg);
-                vm.gotoStep(1);
+                $location.path("success");
+                // alert(msg);
+                // vm.gotoStep(1);
                 $scope.$apply();
             }).catch(function(err) {
                 alert(err);

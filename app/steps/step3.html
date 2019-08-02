@@ -1,5 +1,13 @@
-<div class="form-group">
-  <label>Subgenre Name</label>
-  <input type="text" class="form-control" name="newSubgenre" ng-model="vm.currentGenre.currentSubgenre.name" required />
-  <input type="checkbox" ng-model="vm.currentGenre.currentSubgenre.isDescriptionRequired">Description<br>
+<div class="book-card-body">
+    <div class="row add-new-book">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input ng-model="vm.currentGenre.currentSubgenre.name" required type="name" class="form-control input-field" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Subgenre name">
+            </div>
+            <label class="add-check mt-4">Description is required for this subgenre
+                <input type="checkbox" ng-model="vm.currentGenre.currentSubgenre.isDescriptionRequired">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+    </div>
 </div>
