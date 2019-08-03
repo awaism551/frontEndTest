@@ -59,7 +59,12 @@ function wizardController(genreService, $scope, $location) {
         if(newStep === 4) {
             vm.currentGenre.currentSubgenre.id = ++vm.totalSubgenres;
         }
-        if (newStep === 3 && !angular.equals(vm.currentGenre.currentSubgenre, {})) {
+        if (newStep === 3 && vm.skippedStep === true && vm.backProc) {
+            // it means we are on step 4 actually and this is a back button functionality from step 4 so we have to go back to step 2
+            newStep--;
+            vm.skippedStep = false;
+        }
+        if (newStep === 3 && !angular.equals(vm.currentGenre.currentSubgenre, {}) && !vm.backProc) {
             newStep++;
             vm.skippedStep = true;
         }
@@ -67,6 +72,7 @@ function wizardController(genreService, $scope, $location) {
             vm.currentGenre = {};
         }
         vm.currentStep = newStep;
+        // $scope.$apply();
     }
     
     vm.getStepTemplate = function() {
