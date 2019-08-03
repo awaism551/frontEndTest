@@ -54,8 +54,7 @@ img{
 	font-size: 12px;
 }
 .steps li.active a .step-no-round,
-.steps li a:hover .step-no-round,
-.steps li a:focus .step-no-round {
+.steps li a:hover .step-no-round {
 	background-color: #5f5d66;
 	color: #fff;
 }

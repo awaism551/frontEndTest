@@ -13,11 +13,7 @@ angular.module('myApp.books', ['ngRoute'])
 }])
 
 .run(['genreService', function(genreService) {
-    genreService.getDataFromFile().then(function () {
-        // data is loaded from file and set in service
-        // vm.genreData = genreService.getGenreData();
-        // vm.totalSubgenres = genreService.getLastSubgenreId() + 1;
-    });
+    genreService.getDataFromFile();
 }])
 
 .controller("WizardController", ["genreService", "$scope", "$location", wizardController])
@@ -31,28 +27,23 @@ function wizardController(genreService, $scope, $location) {
 
     //Model
     vm.currentStep = 1;
-    vm.steps = [
-        {
+    vm.steps = [{
         step: 1,
         name: "Genre",
         template: "steps/step1.html"
-        },
-        {
+        }, {
         step: 2,
         name: "Subgenre",
         template: "steps/step2.html"
-        },   
-        {
+        }, {
         step: 3,
         name: "Add new Subgenre",
         template: "steps/step3.html"
-        },
-        {
+        }, {
         step: 4,
         name: "Information",
         template: "steps/step4.html"
-        }             
-    ];
+    }];
     vm.currentGenre = {};
 
     vm.selectGenre = function(genre) {

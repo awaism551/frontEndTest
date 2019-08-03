@@ -8,9 +8,9 @@ function genreService($http) {
     var vm = this;
 
     this.getDataFromFile = function () {
-        return Promise.resolve($http.get('data/genre.json').then(function(response) {
+        $http.get('data/genre.json').then(function(response) {
             vm.genreData = response.data;
-        }));
+        })
     }
 
     this.updateGenres = function (genre, id) {
@@ -46,11 +46,6 @@ function genreService($http) {
 
     this.getGenreData = function() {
         return vm.genreData;
-        // return Promise.resolve(vm.genreData);
-        // return Promise.resolve($http.get('data/genre.json').then(function(response) {
-        //     vm.genreData = response.data;
-        //     return vm.genreData;
-        // }));
     }
     
 }
