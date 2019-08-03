@@ -21,14 +21,12 @@ function genreService($http) {
                     if (this.genreData.genres[i].subgenres[j].id === genre.currentSubgenre.id) {
                         this.genreData.genres[i].subgenres[j] = genre.currentSubgenre;
                         return Promise.resolve("Book Updated Successfully!");
-                        // break;
                     }
                 }
                 if (j === this.genreData.genres[i].subgenres.length) {
                     // it means its add new book scenario as we have not found our id in already present subgenres
                     this.genreData.genres[i].subgenres.push(genre.currentSubgenre);
                     return Promise.resolve("Book Added Successfully!");
-                    // break;
                 }
             }
         }
@@ -36,11 +34,6 @@ function genreService($http) {
     }
 
     this.getLastSubgenreId = function() {
-        // return Promise.resolve($http.get('data/genre.json').then(function(response) {
-        //     vm.genreData = response.data;
-        //     return vm.genreData.genres[vm.genreData.genres.length - 1].subgenres[vm.genreData.genres[vm.genreData.genres.length - 1].subgenres.length-1].id;
-        //     // return Promise.resolve(vm.genreData.genres[vm.genreData.genres.length - 1].subgenres[vm.genreData.genres[vm.genreData.genres.length - 1].subgenres.length-1].id);
-        // }));
         return vm.genreData.genres[vm.genreData.genres.length - 1].subgenres[vm.genreData.genres[vm.genreData.genres.length - 1].subgenres.length-1].id;
     }
 
