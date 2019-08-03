@@ -24,15 +24,21 @@
                                     <p class="pt-1"></p>
                                 </a>
                             </li>
-                            <li ng-if="vm.currentStep === 3 || vm.currentStep === 4" ng-class="{'active': vm.currentStep === 3}">
+                            <li ng-if="(vm.currentStep === 3 || vm.currentStep === 4) && !vm.skippedStep" ng-class="{'active': vm.currentStep === 3}">
                                 <a href="javascrip:void(0)">
                                     <span class="d-inline-flex align-items-center justify-content-center rounded-circle step-no-round">3</span>
                                     <p class="pt-1">Add new subgenre</p>
                                 </a>
                             </li>
-                            <li ng-if="vm.currentStep === 3 || vm.currentStep === 4" ng-class="{'active': vm.currentStep === 4}">
+                            <li ng-if="(vm.currentStep === 3 || vm.currentStep === 4) && !vm.skippedStep" ng-class="{'active': vm.currentStep === 4}">
                                 <a href="javascrip:void(0)">
                                     <span class="d-inline-flex align-items-center justify-content-center rounded-circle step-no-round">4</span>
+                                    <p class="pt-1">Information</p>
+                                </a>
+                            </li>
+                            <li ng-if="(vm.currentStep === 3 || vm.currentStep === 4) && vm.skippedStep" ng-class="{'active': vm.currentStep === 4}">
+                                <a href="javascrip:void(0)">
+                                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle step-no-round">3</span>
                                     <p class="pt-1">Information</p>
                                 </a>
                             </li>
@@ -44,9 +50,9 @@
                       <div class="book-card-footer">
                           <div class="row subactions-btns action-btns mt-4">
                             <div class="col-md-12 text-right">
-                                <button ng-disabled="vm.currentStep <= 1" ng-click="vm.gotoStep(1)" type="button" class="btn btn-outline-secondary"><i class="fa fa-angle-left mr-2" aria-hidden="true"></i>Go to Start</button>
-                                <button ng-disabled="vm.currentStep >= vm.steps.length || (vm.currentStep === 1 && !vm.currentGenre.selectedGenre) || (vm.currentStep === 2 && !vm.currentGenre.currentSubgenre) || (vm.currentStep === 3 && !vm.currentGenre.currentSubgenre.name)" type="button" class="btn btn-outline-secondary ml-2" ng-click="vm.gotoStep(vm.currentStep + 1)">Next</button>
-                                <button ng-disabled="vm.currentStep != vm.steps.length || (vm.currentStep === 4 && vm.currentGenre.currentSubgenre.isDescriptionRequired && !vm.currentGenre.currentSubgenre.desc)" type="button" class="btn btn-outline-secondary ml-2" ng-click="vm.save()">Save</button>                            
+                                <button ng-disabled="vm.currentStep === 1" ng-click="vm.gotoStep(vm.currentStep - 1)" type="button" class="btn btn-outline-secondary"><i class="fa fa-angle-left mr-2" aria-hidden="true"></i>Back</button>
+                                <button ng-hide="vm.currentStep >= vm.steps.length" ng-disabled="(vm.currentStep === 1 && !vm.currentGenre.selectedGenre) || (vm.currentStep === 2 && !vm.currentGenre.currentSubgenre) || (vm.currentStep === 3 && !vm.currentGenre.currentSubgenre.name)" type="button" class="btn btn-outline-secondary ml-2" ng-click="vm.gotoStep(vm.currentStep + 1)">Next</button>
+                                <button ng-if="vm.currentStep === 4" ng-disabled="vm.currentStep === 4 && vm.currentGenre.currentSubgenre.isDescriptionRequired && !vm.currentGenre.currentSubgenre.desc" type="button" class="btn btn-outline-secondary ml-2" ng-click="vm.save()">Add</button>                            
                             </div>
                         </div>
                       </div>
