@@ -84,7 +84,7 @@ function wizardController(genreService, $scope, $location) {
     }
     
     vm.save = function() {
-        genreService.updateGenres(vm.currentGenre, vm.currentGenre.selectedGenre).then(function (msg) {
+        genreService.updateGenres(vm.currentGenre, vm.currentGenre.selectedGenre).then(function () {
             $location.path("success");
             $scope.$apply();
         }).catch(function(err) {

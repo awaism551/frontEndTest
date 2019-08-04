@@ -14,23 +14,25 @@ function genreService($http) {
     }
 
     this.updateGenres = function (genre, id) {
-        for (var i = 0; i < this.genreData.genres.length; i++) {
-            if (this.genreData.genres[i].id === id) {
-                for(var j = 0; j < this.genreData.genres[i].subgenres.length; j++) {
-                    // update scenario
-                    if (this.genreData.genres[i].subgenres[j].id === genre.currentSubgenre.id) {
-                        this.genreData.genres[i].subgenres[j] = genre.currentSubgenre;
-                        return Promise.resolve("Book Updated Successfully!");
-                    }
-                }
-                if (j === this.genreData.genres[i].subgenres.length) {
-                    // it means its add new book scenario as we have not found our id in already present subgenres
-                    this.genreData.genres[i].subgenres.push(genre.currentSubgenre);
-                    return Promise.resolve("Book Added Successfully!");
-                }
+
+        var filteredGenres = this.genreData.genres.filter(function (el) {
+            return el.id === id;
+        });
+
+        if (filteredGenres.length > 0) {
+            // we have found our genre 
+            var filteredSubgenres = filteredGenres[0].subgenres.filter(function (el) {
+                return el.id === genre.currentSubgenre.id;              
+            });
+            if (filteredSubgenres.length === 0) {
+                // add new subgenre scenario
+                filteredGenres[0].subgenres.push(genre.currentSubgenre);
             }
+            return Promise.resolve();
+        } else {
+            // genre not found
+            return Promise.reject("Error");
         }
-        return Promise.reject("Error");
     }
 
     this.getLastSubgenreId = function() {
